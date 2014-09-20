@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">aedan-todolist</string>
+    <string name="main_screen">To-Do</string>
+    <string name="action_settings">Settings</string>
+    <string name="options">Summary</string>
+    <string name="all">E-Mail All</string>
+    <string name="add_note">+</string>
+    <string name="view_archive">Switch View</string>
+
+</resources> 

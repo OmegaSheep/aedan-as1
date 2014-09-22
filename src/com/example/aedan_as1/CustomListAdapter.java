@@ -6,6 +6,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -15,7 +17,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class CustomListAdapter extends ArrayAdapter<ToDoItemObject>{
+public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements Runnable {
 		private LayoutInflater inflater;
 		private Context context;
 		public CustomListAdapter(Context context, ArrayList<ToDoItemObject> list) {
@@ -24,7 +26,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject>{
 		this.context = context; //Prevents self-assignment and makes context essentially accessible to 
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); //Service required for Inflation
 		}
-		
+		Handler handle = new Handler(Looper.getMainLooper());
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = convertView;
@@ -53,7 +55,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject>{
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
 				newItemObject.isCompleted = isChecked;
-			}
+			};
 
 			@Override
 			public boolean onLongClick(View v) {
@@ -64,7 +66,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject>{
 				String someEmail = "E-mail Selected";
 				String someTitle = "What do you wish to do?";
 				if (!newItemObject.isArchived) {
-					someArchive = "ArchiveAny Selected";
+					someArchive = "Archive Selected";
 				}
 				else {
 					someArchive = "Un-Archive Selected";
@@ -79,12 +81,18 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject>{
 	                   public void onClick(DialogInterface dialog, int id) {
 	                       // User wants to archive item
 	                	   //add(newItemObject);
+	                	   
 	                	   if (newItemObject.isArchived) {
 	                		   newItemObject.isArchived = false;
-	                	   }
+	                		   ListSharingClass.archiveList.remove(newItemObject);
+	                		   ListSharingClass.todoList.add(newItemObject);
+	                	   }			
 	                	   else {
 	                		   newItemObject.isArchived = true;
+	                		   ListSharingClass.todoList.remove(newItemObject);
+	                		   ListSharingClass.archiveList.add(newItemObject);
 	                	   }
+	                	   handle.post(CustomListAdapter.this);
 	                   }
 	               }).setNeutralButton(someEmail, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
@@ -103,6 +111,12 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject>{
 				return true;
 				// TODO Auto-generated method stub
 			}
+			
 		}
-		
+		@Override
+		public void run() {
+			this.notifyDataSetChanged();
+			// TODO Auto-generated method stub
+			
+		}
 }

@@ -43,11 +43,11 @@ public class MainActivity extends Activity {
         //Set up array adapter
         ListView todoListView = (ListView) findViewById(R.id.listView);
         
-        todoList = new ArrayList<ToDoItemObject>();
-        archiveList = new ArrayList<ToDoItemObject>();
+        //todoList = new ArrayList<ToDoItemObject>();
+        //archiveList = new ArrayList<ToDoItemObject>();
         
-        listAdapter = new CustomListAdapter(this, todoList);
-        archiveAdapter = new CustomListAdapter(this, archiveList);
+        listAdapter = new CustomListAdapter(this, ListSharingClass.todoList);
+        archiveAdapter = new CustomListAdapter(this, ListSharingClass.archiveList);
         
         todoListView.setAdapter(listAdapter); //We want to view the To-Do List, not the archive initially.
         
@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
 				newItem.isCompleted = false;
 				newItem.currentDate = Calendar.getInstance();
 				if (!inputString.equals("")) { //Make sure the text field is not empty before adding something.
-					todoList.add(newItem);
+					ListSharingClass.todoList.add(newItem);
 				}
 				listAdapter.notifyDataSetChanged(); //Do this every time you change the list.
 				userinput.setText("");
@@ -106,7 +106,7 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         //options = (Button) findViewById(R.id.options_button);
        // options.setOnClickListener(new View.OnClickListener() {
-			
+        listAdapter.notifyDataSetChanged();
 		//	@Override
 		//	public void onClick(View v) {
 		//		// TODO Auto-generated method stub
@@ -127,6 +127,8 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+	
     
     
 }

@@ -64,7 +64,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject>{
 				String someEmail = "E-mail Selected";
 				String someTitle = "What do you wish to do?";
 				if (!newItemObject.isArchived) {
-					someArchive = "Archive Selected";
+					someArchive = "ArchiveAny Selected";
 				}
 				else {
 					someArchive = "Un-Archive Selected";

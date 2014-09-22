@@ -7,6 +7,6 @@
     <string name="options">Summary</string>
     <string name="all">E-Mail All</string>
     <string name="add_note">+</string>
-    <string name="view_archive">Switch View</string>
+    <string name="view_archive">View Archive</string>
 
 </resources> 

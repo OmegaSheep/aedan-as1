@@ -73,13 +73,16 @@ public class MainActivity extends Activity {
         archive.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 				// TODO Auto-generated method stub
 				ListView todoListView = (ListView) findViewById(R.id.listView);
 				if (archiveFlag == true) {
+					archive.setText("View To-Do");
 					todoListView.setAdapter(archiveAdapter);
 					archiveFlag = false;
 				}
 				else {
+					archive.setText("View Archive");
 					todoListView.setAdapter(listAdapter);
 					archiveFlag = true;
 				}

@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	//ArrayList<ToDoItemObject> archiveList;
 	ArrayAdapter<ToDoItemObject> listAdapter;
 	ArrayAdapter<ToDoItemObject> archiveAdapter;
-	Button emailAll, archive, add;
+	Button emailAll, archive, add, summary;
 	EditText userinput;
 	boolean archiveFlag = true;
 	
@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
         add = (Button) findViewById(R.id.add_button);
         archive = (Button) findViewById(R.id.archive_button);
         emailAll = (Button) findViewById(R.id.all_button);
+        summary = (Button) findViewById(R.id.summary_button);
         
         //Set up array adapter
         ListView todoListView = (ListView) findViewById(R.id.listView);
@@ -93,10 +94,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				@SuppressWarnings("unused")
-				String emailString = "E-mail All Items";
-				@SuppressWarnings("unused")
-				String cancelString = "Cancel";
 				String mega_array = "";
 				
 				//Adds all the todoList items to Mega Array
@@ -107,13 +104,20 @@ public class MainActivity extends Activity {
 				for(int i=0; i< ListSharingClass.archiveList.size(); i++){
 					mega_array += "Archived: " + ListSharingClass.archiveList.get(i).todoText + "\n";
 				}
-				
 				Intent massEmailer = new Intent(android.content.Intent.ACTION_SEND);
          	    massEmailer.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"youremails@yourprovider.com"});		  
          	    massEmailer.putExtra(android.content.Intent.EXTRA_SUBJECT, "To-Do List Notification");
          	    massEmailer.putExtra(android.content.Intent.EXTRA_TEXT, mega_array);
          	    massEmailer.setType("message/rfc822");
          	    startActivity(android.content.Intent.createChooser(massEmailer, "Choose an Email client :"));
+				
+			}
+        });
+        summary.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
 				
 			}
         });

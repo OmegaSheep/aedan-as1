@@ -31,7 +31,7 @@ public final class R {
         public static final int archive_button=0x7f080000;
         public static final int listView=0x7f080005;
         public static final int list_row_string=0x7f080004;
-        public static final int options_button=0x7f080003;
+        public static final int summary_button=0x7f080003;
         public static final int todoBox=0x7f080007;
         public static final int todoField=0x7f080001;
     }

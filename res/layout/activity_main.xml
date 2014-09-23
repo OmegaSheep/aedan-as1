@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/archive_button"
         android:layout_alignBottom="@+id/archive_button"
-        android:layout_alignRight="@+id/options_button"
+        android:layout_alignRight="@+id/summary_button"
         android:text="@string/add_note" />
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:layout_above="@+id/todoField"
-        android:layout_below="@+id/options_button" >
+        android:layout_below="@+id/summary_button" >
 
     </ListView>
 
@@ -64,11 +64,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/list_row_string"
-        android:layout_toLeftOf="@+id/options_button"
+        android:layout_toLeftOf="@+id/summary_button"
         android:text="@string/all" />
 
     <Button
-        android:id="@+id/options_button"
+        android:id="@+id/summary_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/all_button"

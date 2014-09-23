@@ -75,23 +75,27 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 				AlertDialog.Builder longClickDialog = new AlertDialog.Builder(context, 2); //The "2" constant, changes the color scheme to dark.
 				longClickDialog.setTitle(someTitle).setPositiveButton(someDelete, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
-	                     remove(newItemObject);
+	                	   remove(newItemObject);
 	                   }
 	               }).setNegativeButton(someArchive, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
 	                       // User wants to archive item
+	                	   boolean x = newItemObject.isCompleted;
 	                	   if (newItemObject.isArchived) {
 	                		   newItemObject.isArchived = false;
-	                		   ListSharingClass.todoList.add(newItemObject);
 	                		   ListSharingClass.archiveList.remove(newItemObject);
+	                		   ListSharingClass.todoList.add(newItemObject);
+
 	                	   }			
 	                	   else {
 	                		   newItemObject.isArchived = true;
-	                		   ListSharingClass.archiveList.add(newItemObject);
 	                		   ListSharingClass.todoList.remove(newItemObject);
+	                		   ListSharingClass.archiveList.add(newItemObject);
 	                		   
 	                	   }
+	                	   
 	                	   handle.post(CustomListAdapter.this);
+	                	   newItemObject.isCompleted = x;
 	                   }
 	               }).setNeutralButton(someEmail, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {

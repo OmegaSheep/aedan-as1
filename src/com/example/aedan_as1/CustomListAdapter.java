@@ -72,25 +72,24 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 					someArchive = "Un-Archive Selected";
 				}
 				
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				builder.setTitle(someTitle).setPositiveButton(someDelete, new DialogInterface.OnClickListener() {
+				AlertDialog.Builder longClickDialog = new AlertDialog.Builder(context, 2); //The "2" constant, changes the color scheme to dark.
+				longClickDialog.setTitle(someTitle).setPositiveButton(someDelete, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
 	                     remove(newItemObject);
 	                   }
 	               }).setNegativeButton(someArchive, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
 	                       // User wants to archive item
-	                	   //add(newItemObject);
-	                	   
 	                	   if (newItemObject.isArchived) {
 	                		   newItemObject.isArchived = false;
-	                		   ListSharingClass.archiveList.remove(newItemObject);
 	                		   ListSharingClass.todoList.add(newItemObject);
+	                		   ListSharingClass.archiveList.remove(newItemObject);
 	                	   }			
 	                	   else {
 	                		   newItemObject.isArchived = true;
-	                		   ListSharingClass.todoList.remove(newItemObject);
 	                		   ListSharingClass.archiveList.add(newItemObject);
+	                		   ListSharingClass.todoList.remove(newItemObject);
+	                		   
 	                	   }
 	                	   handle.post(CustomListAdapter.this);
 	                   }
@@ -106,7 +105,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 	                   }
 	               });
 				
-				AlertDialog dialog = builder.create();
+				AlertDialog dialog = longClickDialog.create();
 				dialog.show();
 				return true;
 				// TODO Auto-generated method stub

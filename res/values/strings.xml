@@ -8,5 +8,10 @@
     <string name="all">E-Mail All</string>
     <string name="add_note">+</string>
     <string name="view_archive">View Archive</string>
-
-</resources> 
+    <string name="title_activity_summary">Summary</string>
+	<string name="sum1">To-Do Items Checked: </string>
+	<string name="sum2">To-Do Items Un-Checked: </string>
+	<string name="sum3">Archived Items: </string>
+	<string name="sum4">Checked Archived Items: </string>
+	<string name="sum5">Un-Checked Archived Items: </string>
+</resources>

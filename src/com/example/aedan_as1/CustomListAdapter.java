@@ -85,17 +85,17 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 	                		   newItemObject.isArchived = false;
 	                		   ListSharingClass.archiveList.remove(newItemObject);
 	                		   ListSharingClass.todoList.add(newItemObject);
-
+	                		   ListSharingClass.todoList.get(ListSharingClass.todoList.size() - 1).isCompleted = x;
 	                	   }			
 	                	   else {
 	                		   newItemObject.isArchived = true;
 	                		   ListSharingClass.todoList.remove(newItemObject);
 	                		   ListSharingClass.archiveList.add(newItemObject);
-	                		   
+	                		   ListSharingClass.archiveList.get(ListSharingClass.archiveList.size() - 1).isCompleted = x;
 	                	   }
 	                	   
 	                	   handle.post(CustomListAdapter.this);
-	                	   newItemObject.isCompleted = x;
+	                	   //newItemObject.isCompleted = x;
 	                   }
 	               }).setNeutralButton(someEmail, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
@@ -120,6 +120,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 		public void run() {
 			this.notifyDataSetChanged();
 			// TODO Auto-generated method stub
+			
 			
 		}
 }

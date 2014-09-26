@@ -43,16 +43,16 @@ public enum SaveAndLoad { //enum enforces "singletons" in Java which allows this
 			String listContent = FileUtils.readFileToString(new File(megaContext.getFilesDir(),ToDoItemFile));
 			Type collectionType = new TypeToken<Collection<ToDoItemObject>>() {}.getType(); //API to get a generic type for feeding to GSON
 			ListSharingClass.todoList.clear();
-			//This cast was suggested as a default by Eclipse after ruthlessly 
-			//trying to debug and figure out what type to give it (to no avail)
+			//This '?' cast was suggested as a default by Eclipse after ruthlessly 
+			//trying to debug and figure out what type to give it.
 			ListSharingClass.todoList.addAll((Collection<? extends ToDoItemObject>) gson.fromJson(listContent, (java.lang.reflect.Type) collectionType));
 			
 			//Archive List
 			String archiveContent = FileUtils.readFileToString(new File(megaContext.getFilesDir(),ArchiveFile));
 			
 			ListSharingClass.archiveList.clear();
-			//This cast was suggested as a default by Eclipse after ruthlessly 
-			//trying to debug and figure out what type to give it (to no avail)
+			//This '?' cast was suggested as a default by Eclipse after ruthlessly 
+			//trying to debug and figure out what type to give it.
 			ListSharingClass.archiveList.addAll((Collection<? extends ToDoItemObject>) gson.fromJson(archiveContent, (java.lang.reflect.Type) collectionType));
 			
 		} catch (Exception e) {

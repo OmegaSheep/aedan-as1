@@ -27,9 +27,9 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-        //SaveAndLoad.INSTANCE.loadContext(this);
-        //SaveAndLoad.INSTANCE.loadList();
-        //listAdapter.update();
+        SaveAndLoad.INSTANCE.loadContext(this);
+        SaveAndLoad.INSTANCE.loadList();
+        listAdapter.update();
 	}
 	
     @Override
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
         
         //Set up array adapter
         ListView todoListView = (ListView) findViewById(R.id.listView);
-        listAdapter = new CustomListAdapter(this, ListSharingClass.todoList);
+        listAdapter = new CustomListAdapter(this, ListSharingClass.todoList);//new CustomListAdapter(this, ListSharingClass.todoList);
         archiveAdapter = new CustomListAdapter(this, ListSharingClass.archiveList);
         todoListView.setAdapter(listAdapter); //We want to view the To-Do List, not the archive initially.
         listAdapter.notifyDataSetChanged();
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
 				newItem.currentDate = Calendar.getInstance();
 				if (!inputString.equals("")) { //Make sure the text field is not empty before adding something.
 					ListSharingClass.todoList.add(newItem);
-					//SaveAndLoad.INSTANCE.saveItems();
+					SaveAndLoad.INSTANCE.saveItems();
 				}
 				listAdapter.update();
 				userinput.setText("");
@@ -94,7 +94,6 @@ public class MainActivity extends Activity {
         emailAll.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				String mega_array = "";
 				
 				//Adds all the todoList items to Mega Array

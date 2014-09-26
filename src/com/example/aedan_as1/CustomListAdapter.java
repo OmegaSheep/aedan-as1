@@ -54,6 +54,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
 				newItemObject.isCompleted = isChecked;
+				SaveAndLoad.INSTANCE.saveItems();
 			};
 
 			@Override
@@ -75,6 +76,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 				longClickDialog.setTitle(someTitle).setPositiveButton(someDelete, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
 	                	   remove(newItemObject);
+	                	   SaveAndLoad.INSTANCE.saveItems();
 	                   }
 	               }).setNegativeButton(someArchive, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
@@ -92,9 +94,8 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 	                		   ListSharingClass.archiveList.add(newItemObject);
 	                		   ListSharingClass.archiveList.get(ListSharingClass.archiveList.size() - 1).isCompleted = x;
 	                	   }
-	                	   
+	                	   SaveAndLoad.INSTANCE.saveItems();
 	                	   handle.post(CustomListAdapter.this);
-	                	   //newItemObject.isCompleted = x;
 	                   }
 	               }).setNeutralButton(someEmail, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {

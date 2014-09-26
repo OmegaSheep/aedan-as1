@@ -13,7 +13,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public enum SaveAndLoad {
+public enum SaveAndLoad { //Enum enforces "singletons" in Java which allows this same instance to be accessed anywhere instantiated.
 	INSTANCE;
 	  
     private static final String ToDoItemFile = "appfile.sav";
@@ -33,16 +33,22 @@ public enum SaveAndLoad {
 		}
     }
     
-    public void loadList() {
+    @SuppressWarnings("unchecked")
+	public void loadList() {
     	
 		try {
 			//To-Do List
 			String line = FileUtils.readFileToString(new File(megaContext.getFilesDir(),ToDoItemFile));
-			Type collectionType = new TypeToken<Collection<ToDoItemObject>>() {}.getType();
-			ListSharingClass.todoList = gson.fromJson(line, (java.lang.reflect.Type) collectionType);
+			Type collectionType = new TypeToken<Collection<ToDoItemObject>>() {}.getType(); //API to get a generic type for feeding to GSON
+			ListSharingClass.todoList.clear();
+			//This cast was suggested by default after ruthlessly trying to debug and figure out what type to give it (to no avail)
+			ListSharingClass.todoList.addAll((Collection<? extends ToDoItemObject>) gson.fromJson(line, (java.lang.reflect.Type) collectionType));
+			
 			//Archive List
 			String line1 = FileUtils.readFileToString(new File(megaContext.getFilesDir(),ArchiveFile));
-			ListSharingClass.archiveList = gson.fromJson(line1, (java.lang.reflect.Type) collectionType);
+			ListSharingClass.archiveList.clear();
+			//This cast was suggested by default after ruthlessly trying to debug and figure out what type to give it (to no avail)
+			ListSharingClass.archiveList.addAll((Collection<? extends ToDoItemObject>) gson.fromJson(line1, (java.lang.reflect.Type) collectionType));
 		} catch (Exception e) {
 			Log.i("To-Do List", "Error loading To-Do List");
 			e.printStackTrace();

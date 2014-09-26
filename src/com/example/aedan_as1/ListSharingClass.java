@@ -3,9 +3,11 @@ package com.example.aedan_as1;
 import java.util.ArrayList;
 import android.app.Application;
 public class ListSharingClass extends Application{
+	
 	public static ArrayList<ToDoItemObject> todoList = new ArrayList<ToDoItemObject>();
     public static ArrayList<ToDoItemObject> archiveList = new ArrayList<ToDoItemObject>();
     
+    //Used for Summary Page calculations.
     public static int calculateChecked(ArrayList<ToDoItemObject> lst) {
     	int totalChecked = 0;
     	for(int i=0; i< lst.size(); i++){
@@ -15,6 +17,8 @@ public class ListSharingClass extends Application{
 		}
 		return totalChecked;
     }
+    
+    //Used for Summary Page calculations.
     public static int calculateUnchecked(ArrayList<ToDoItemObject> lst) {
     	int totalUnchecked = 0;
     	for(int i=0; i< lst.size(); i++){
@@ -24,6 +28,8 @@ public class ListSharingClass extends Application{
 		}
 		return totalUnchecked;
     }
+    
+    //Used for Summary Page calculations.
     public static int calculateTotal(ArrayList<ToDoItemObject> lst) {
     	return lst.size();
     }

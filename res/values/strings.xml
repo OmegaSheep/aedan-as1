@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">aedan-todolist</string>
+    <string name="app_name">aedan-notes</string>
     <string name="main_screen">To-Do</string>
     <string name="action_settings">Settings</string>
     <string name="options">Summary</string>

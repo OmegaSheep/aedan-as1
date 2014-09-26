@@ -1,12 +1,12 @@
 package com.example.aedan_as1;
 
-import java.util.Calendar;
+//import java.util.Calendar; //Never got used. :(
 
 public class ToDoItemObject {
 	String todoText;
-	boolean isCompleted = false; //Default is false so that items added are always unchecked.
+	boolean isCompleted = false; 
 	boolean isArchived = false;
-	boolean isSelected = false;
-	Calendar currentDate; //Probably not necessary, but might be a cool feature.
+	//boolean isSelected = false; //Unused; my GUI is not 'selection' focused.
+	//Calendar currentDate; //Probably not necessary, but might be a cool feature.
 	
 }

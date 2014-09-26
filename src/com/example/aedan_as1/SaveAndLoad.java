@@ -13,47 +13,53 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public enum SaveAndLoad { //Enum enforces "singletons" in Java which allows this same instance to be accessed anywhere instantiated.
+public enum SaveAndLoad { //enum enforces "singletons" in Java which allows this same instance to be accessed anywhere instantiated.
 	INSTANCE;
 	  
-    private static final String ToDoItemFile = "appfile.sav";
+    private static final String ToDoItemFile = "appfile.sav"; //We save our two lists to separate files to avoid any confusion on load.
     private static final String ArchiveFile = "appfile2.sav";
     private static Gson gson = new Gson();
     private static Context megaContext;
+    
     public void loadContext(Context ctx) {
     	megaContext = ctx;
     }
+    
     public void saveItems() {
     	try {
     		FileUtils.write((new File(megaContext.getFilesDir(),ToDoItemFile)), gson.toJson(ListSharingClass.todoList));
     		FileUtils.write((new File(megaContext.getFilesDir(),ArchiveFile)), gson.toJson(ListSharingClass.archiveList));
-			Log.i("Persistence", "Saved: All Items");
 		} catch (Exception e) {
+			Log.i("notes", "Error saving To-Do List");
 			e.printStackTrace();
 		}
     }
     
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked") //Eclipse suggested a weird type-cast which is causing warnings, but seems to work for my scenario.
 	public void loadList() {
     	
 		try {
 			//To-Do List
-			String line = FileUtils.readFileToString(new File(megaContext.getFilesDir(),ToDoItemFile));
+			String listContent = FileUtils.readFileToString(new File(megaContext.getFilesDir(),ToDoItemFile));
 			Type collectionType = new TypeToken<Collection<ToDoItemObject>>() {}.getType(); //API to get a generic type for feeding to GSON
 			ListSharingClass.todoList.clear();
-			//This cast was suggested by default after ruthlessly trying to debug and figure out what type to give it (to no avail)
-			ListSharingClass.todoList.addAll((Collection<? extends ToDoItemObject>) gson.fromJson(line, (java.lang.reflect.Type) collectionType));
+			//This cast was suggested as a default by Eclipse after ruthlessly 
+			//trying to debug and figure out what type to give it (to no avail)
+			ListSharingClass.todoList.addAll((Collection<? extends ToDoItemObject>) gson.fromJson(listContent, (java.lang.reflect.Type) collectionType));
 			
 			//Archive List
-			String line1 = FileUtils.readFileToString(new File(megaContext.getFilesDir(),ArchiveFile));
+			String archiveContent = FileUtils.readFileToString(new File(megaContext.getFilesDir(),ArchiveFile));
+			
 			ListSharingClass.archiveList.clear();
-			//This cast was suggested by default after ruthlessly trying to debug and figure out what type to give it (to no avail)
-			ListSharingClass.archiveList.addAll((Collection<? extends ToDoItemObject>) gson.fromJson(line1, (java.lang.reflect.Type) collectionType));
+			//This cast was suggested as a default by Eclipse after ruthlessly 
+			//trying to debug and figure out what type to give it (to no avail)
+			ListSharingClass.archiveList.addAll((Collection<? extends ToDoItemObject>) gson.fromJson(archiveContent, (java.lang.reflect.Type) collectionType));
+			
 		} catch (Exception e) {
-			Log.i("To-Do List", "Error loading To-Do List");
+			Log.i("notes", "Error loading To-Do List");
 			e.printStackTrace();
-			ListSharingClass.archiveList = new ArrayList<ToDoItemObject>();
-			ListSharingClass.todoList = new ArrayList<ToDoItemObject>();
+			ListSharingClass.archiveList = new ArrayList<ToDoItemObject>(); //Initialize lists just in case to prevent a memory leak. Shouldn't ever happen really.
+			ListSharingClass.todoList = new ArrayList<ToDoItemObject>(); //Initialize lists just in case to prevent a memory leak. Shouldn't ever happen really.
 		}
 		
     }

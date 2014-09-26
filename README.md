@@ -22,7 +22,21 @@ All licensing information is contained within the included LICENSE file.
 
 NAME OF APK FILE: 'aedan-as1.apk'
 
-Collaborators:
+
+------------------------------------------------------------------------------------
+
+Collaborators & Sources
+=======================
+
+
+http://developer.android.com/index.html - (Official Android Developer Site)
+
+Stack Overflow Posts fall under Creative Commons: http://creativecommons.org/licenses/by-sa/2.5/
+
+http://stackoverflow.com/questions/4531396/get-value-of-a-edit-text-field - (Before I found the official android site. . .)
+http://stackoverflow.com/questions/833768/java-code-for-getting-current-time - (Did not end up using this at all, but it was consulted so)
+http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application - (Code snippet for e-mail intent sending)
+
 
 Marcus Karpoff - Suggested using a List Adapter to pass entire objects through, so that I could have neat little checkboxes more easily.
 
@@ -30,7 +44,6 @@ David from UACS - Suggested using an enum for my SaveAndLoad class to allow cert
 
 Anthony Ou - Gave me some lessons on how to use Log Cat effectively and some rough suggestions of how to debug File I/O and Serialization.
 
-------------------------------------------------------------------------------------
 
 How To Use this App
 ===================

@@ -102,6 +102,7 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 	                 //Neutral button is for E-Mailing specific items.
 	               }).setNeutralButton(someEmail, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
+	                   	   //Code Snippet referenced from Stackoverflow in README. Posted by fiXedd.
 	                	   Intent emailer = new Intent(Intent.ACTION_SEND);
 	                	   emailer.putExtra(Intent.EXTRA_EMAIL, new String[]{"youremails@yourprovider.com"});		  
 	                	   emailer.putExtra(Intent.EXTRA_SUBJECT, "To-Do List Notification");

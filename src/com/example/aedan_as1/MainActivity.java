@@ -1,40 +1,44 @@
 package com.example.aedan_as1;
 
 //import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-@SuppressWarnings("unused")
 public class MainActivity extends Activity {
+	
 	int todoDone = 0;
 	int todoNotDone = 0;
 	int todo_archive = 0;
 	int todoDone_archive = 0;
 	int todoNotDone_archive = 0;
-	ArrayAdapter<ToDoItemObject> listAdapter;
-	ArrayAdapter<ToDoItemObject> archiveAdapter;
+	CustomListAdapter listAdapter;
+	CustomListAdapter archiveAdapter;
 	Button emailAll, archive, add, summary;
 	EditText userinput;
 	boolean archiveFlag = true;
-	Context CTT;
+	@Override
+	protected void onResume() {
+		super.onResume();
+        //SaveAndLoad.INSTANCE.loadContext(this);
+        //SaveAndLoad.INSTANCE.loadList();
+        //listAdapter.update();
+	}
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         
-        ListSharingClass.todoList = ListSharingClass.loadList(ListSharingClass.todoList, CTT);
+       
+		
+        setContentView(R.layout.activity_main);
         
         userinput = (EditText) findViewById(R.id.todoField); 
         
@@ -45,12 +49,10 @@ public class MainActivity extends Activity {
         
         //Set up array adapter
         ListView todoListView = (ListView) findViewById(R.id.listView);
-        
         listAdapter = new CustomListAdapter(this, ListSharingClass.todoList);
         archiveAdapter = new CustomListAdapter(this, ListSharingClass.archiveList);
-        
         todoListView.setAdapter(listAdapter); //We want to view the To-Do List, not the archive initially.
-        
+        listAdapter.notifyDataSetChanged();
         add.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -64,9 +66,9 @@ public class MainActivity extends Activity {
 				newItem.currentDate = Calendar.getInstance();
 				if (!inputString.equals("")) { //Make sure the text field is not empty before adding something.
 					ListSharingClass.todoList.add(newItem);
-					//ListSharingClass.saveItems(ListSharingClass.todoList, CTT);
+					//SaveAndLoad.INSTANCE.saveItems();
 				}
-				listAdapter.notifyDataSetChanged(); //Do this every time you change the list.
+				listAdapter.update();
 				userinput.setText("");
 			}
 		});

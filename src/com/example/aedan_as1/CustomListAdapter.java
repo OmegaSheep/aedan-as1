@@ -21,7 +21,6 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 		private LayoutInflater inflater;
 		private Context context;
 		public CustomListAdapter(Context context, ArrayList<ToDoItemObject> list) {
-			// TODO Auto-generated constructor stub
 		super(context, R.layout.list_view, list); //
 		this.context = context; //Prevents self-assignment and makes context essentially accessible to 
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); //Service required for Inflation
@@ -122,5 +121,8 @@ public class CustomListAdapter extends ArrayAdapter<ToDoItemObject> implements R
 			// TODO Auto-generated method stub
 			
 			
+		}
+		public void update() {
+			handle.post(this);
 		}
 }

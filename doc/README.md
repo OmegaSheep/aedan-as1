@@ -11,6 +11,7 @@ Copyright 2014 Aedan Burnett
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+   
 ------------------------------------------------------------------------------------
 
 aedan-notes
@@ -33,14 +34,15 @@ http://developer.android.com/index.html - (Official Android Developer Site)
 
 Stack Overflow Posts fall under Creative Commons: http://creativecommons.org/licenses/by-sa/2.5/
 
-http://stackoverflow.com/questions/4531396/get-value-of-a-edit-text-field - (Before I found the official android site. . .)
-http://stackoverflow.com/questions/833768/java-code-for-getting-current-time - (Did not end up using this at all, but it was consulted so)
-http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application - (Code snippet for e-mail intent sending)
+(Posted by svdree) http://stackoverflow.com/questions/4531396/get-value-of-a-edit-text-field - (Read this before finding the official android site. Didn't end up really relying on it.)
 
+(Posted by Artur) http://stackoverflow.com/questions/833768/java-code-for-getting-current-time - (Did not end up using this at all, but it was consulted so here it is.)
+
+(Posted by fiXedd) http://stackoverflow.com/questions/2197741/how-can-i-send-emails-from-my-android-application - (Code snippet for e-mail intent sending. Comments in .java file indicate where this was used.)
 
 Marcus Karpoff - Suggested using a List Adapter to pass entire objects through, so that I could have neat little checkboxes more easily.
 
-David from UACS - Suggested using an enum for my SaveAndLoad class to allow certain freedoms with where and how I access its methods.
+Shen Wei Liao (David) - Suggested using an enum for my SaveAndLoad class to allow certain freedoms with where and how I access its methods.
 
 Anthony Ou - Gave me some lessons on how to use Log Cat effectively and some rough suggestions of how to debug File I/O and Serialization.
 
